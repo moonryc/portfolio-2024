@@ -33,7 +33,7 @@ const waterlyProject:Project = {
 const amorAIProject:Project = {
   title: 'AmorAI',
   description: 'Developed a voice-to-text/text chatbot that leverages AI, 3D models, and voice models to authentically simulate human-to-human conversation',
-  technologies: ["React", "TypeScript", "GraphQL", "NX", "Postres", "TypeORM", "Apollo", "Docker", "OpenAI"],
+  technologies: ["React", "TypeScript", "GraphQL", "NX", "Postgres", "TypeORM", "Apollo", "Docker", "OpenAI"],
   photos: ["amorAI_1.png", 'amorAI_2.png', 'amorAI_3.png'],
   //No link as repo is privated and not mine
 }
