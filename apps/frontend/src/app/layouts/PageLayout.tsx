@@ -1,6 +1,6 @@
 import { Grid } from '@mui/material';
 import React, { PropsWithChildren } from 'react';
-import PageHeader from '../components/PageHeader';
+import PageHeader from './PageHeader';
 
 type PageLayoutProps = {
   title: string;
@@ -12,7 +12,7 @@ const PageLayout = ({title, children}:PropsWithChildren<PageLayoutProps> ) => {
       <Grid item xs={12}>
         <PageHeader title={title}/>
       </Grid>
-      <Grid item xs={12}>
+      <Grid item xs={12} justifyContent={"center"}>
         {children}
       </Grid>
     </Grid>

@@ -9,15 +9,21 @@ type ButtonProps = {
   value: string;
   onClick: ()=>void;
   isSelected?: boolean
+  customIcon?: JSX.Element
 }
 
-const Button = ({value,isSelected = false, onClick}:ButtonProps) => {
+const Button = ({value,isSelected = false, onClick, customIcon}:ButtonProps) => {
   const theme = useTheme();
 
   const [isHovered, { toggleOn: toggleHoverOn, toggleOff: toggleHoverOff }] =
     useAdvancedToggle(false);
 
   const icon = useMemo(() => {
+
+    if(customIcon){
+      return customIcon;
+    }
+
     const iconColor = isHovered || isSelected ? 'primary' : 'secondary';
     return isSelected ? <GridViewSharpIcon color={iconColor} /> : <Square color={iconColor} />;
   }, [isHovered, isSelected]);
@@ -34,6 +40,7 @@ const Button = ({value,isSelected = false, onClick}:ButtonProps) => {
       onMouseEnter={toggleHoverOn}
       onMouseLeave={toggleHoverOff}
       sx={{
+        cursor: "pointer",
         background: theme.palette.secondary.light,
         py: '5px'
       }}>

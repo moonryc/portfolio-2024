@@ -15,7 +15,7 @@ const AboutMePage = ({aboutMeDTO}:AboutMePageProps) => {
       <Box bgcolor={theme.palette.secondary.light} >
         {aboutMeDTO.map((sentence)=>(
           <React.Fragment key={sentence}>
-            <Typography p={2} variant={"body1"} fontWeight={"bolder"} color={theme.palette.primary.main}>{sentence}</Typography>
+            <Typography p={2} variant={"h6"} fontWeight={"bolder"} color={theme.palette.primary.main}>{sentence}</Typography>
           </React.Fragment>)
         )}
       </Box>
