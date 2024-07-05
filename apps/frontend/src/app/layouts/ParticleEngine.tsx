@@ -1,6 +1,6 @@
-import { PropsWithChildren } from 'react';
+import { PropsWithChildren, useEffect } from 'react';
 import { useAdvancedToggle } from '../hooks/useAdvancedToggle';
-import { useEffectOnce } from 'react-use';
+import { useDebounce, useEffectOnce, usePrevious, useWindowSize } from 'react-use';
 import Particles, { initParticlesEngine, IParticlesProps } from '@tsparticles/react';
 // import { loadSlim } from '@tsparticles/slim';
 import { useTheme } from '@mui/material';
@@ -9,8 +9,7 @@ import { loadAll } from '@tsparticles/all';
 const ParticleEngine = ({ children }: PropsWithChildren) => {
   const theme = useTheme();
 
-  const [isParticleEngineInit, { toggleOn: turnParticleSystemOn }] = useAdvancedToggle(false);
-
+  const [isParticleEngineInit, { toggleOn: turnParticleSystemOn}] = useAdvancedToggle(false);
   // this should be run only once per application lifetime
   useEffectOnce(() => {
     initParticlesEngine(async (engine) => {

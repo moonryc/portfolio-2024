@@ -20,14 +20,14 @@ const NavBar = () => {
         {locations.map((loc) => {
           if (loc.value === locations[0].value) {
             return (
-              <Grid item xs={12} md={12}>
-                <NavButton key={loc.value} {...loc} />
+              <Grid  key={loc.value} item xs={12} md={12}>
+                <NavButton  {...loc} />
               </Grid>
             );
           } else {
             return (
-              <Grid item xs={6} md={12}>
-                <NavButton key={loc.value} {...loc} />
+              <Grid key={loc.value} item xs={6} md={12}>
+                <NavButton {...loc} />
               </Grid>
             );
           }

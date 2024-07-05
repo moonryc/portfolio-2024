@@ -1,17 +1,23 @@
+/**
+ * This is not a production server yet!
+ * This is only a minimal backend to get started.
+ */
 
-import { expressMiddleware } from '@apollo/server/express4';
-import cors from 'cors';
-import express from 'express';
-import "reflect-metadata"
+import { Logger } from '@nestjs/common';
+import { NestFactory } from '@nestjs/core';
 
-const app = express();
+import { AppModule } from './app/app.module';
 
+async function bootstrap() {
+  const app = await NestFactory.create(AppModule);
+  const globalPrefix = 'api';
+  app.setGlobalPrefix(globalPrefix);
+  const port = process.env.PORT || 3000;
+  app.enableCors()
+  await app.listen(port);
+  Logger.log(
+    `🚀 Application is running on: http://localhost:${port}/${globalPrefix}`
+  );
+}
 
-// Note you must call `start()` on the `ApolloServer`
-// instance before passing the instance to `expressMiddleware`
-await server.start();
-
-// Specify the path where we'd like to mount our server
-//highlight-start
-app.use('/graphql', cors<cors.CorsRequest>(), express.json(), expressMiddleware(server));
-//highlight-end
+bootstrap();

@@ -29,7 +29,7 @@ const NavButton = ({ value, href }: ListItemProps) => {
     const dividerColor =
       isHovered || isSelected ? theme.palette.primary.main : theme.palette.secondary.light;
     return <Box height={'3px'} width={'100%'} bgcolor={dividerColor} />;
-  }, [isHovered, isSelected]);
+  }, [isHovered, isSelected, theme.palette.primary.main, theme.palette.secondary.light]);
 
   const handleOnClick = useCallback(() => {
     if (!href) return;
