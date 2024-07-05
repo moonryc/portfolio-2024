@@ -6,10 +6,23 @@ type ContactInfo = {
   github: string
 }
 
+export type Project = {
+  title: string;
+  technologies: string[];
+  description: string;
+  photos: string[]
+  link?: string;
+}
+
+type Projects = {
+  [k in string]: Project
+}
+
 export type PersonalQuery = {
-  aboutMe: string;
+  aboutMe: string[];
   contactMe: ContactInfo
   technologies: string[]
+  projects: Projects
 }
 
 

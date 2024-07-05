@@ -1,5 +1,7 @@
 import { Box, Typography, useTheme } from '@mui/material';
 import { PersonalQuery } from '../hooks/usePersonalQuery';
+import PageLayout from './PageLayout';
+import React from 'react';
 
 type AboutMePageProps = {
   aboutMeDTO: PersonalQuery["aboutMe"]
@@ -9,12 +11,15 @@ const AboutMePage = ({aboutMeDTO}:AboutMePageProps) => {
   const theme = useTheme()
 
   return (
-    <Box height={"80%"} width={"80%"} bgcolor={theme.palette.secondary.light} >
-      <Typography>
-      {aboutMeDTO}
-      </Typography>
-
-    </Box>
+    <PageLayout title={"About Me"}>
+      <Box bgcolor={theme.palette.secondary.light} >
+        {aboutMeDTO.map((sentence)=>(
+          <React.Fragment key={sentence}>
+            <Typography p={2} variant={"body1"} fontWeight={"bolder"} color={theme.palette.primary.main}>{sentence}</Typography>
+          </React.Fragment>)
+        )}
+      </Box>
+    </PageLayout>
   );
 };
 
