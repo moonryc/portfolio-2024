@@ -3,7 +3,6 @@ import { ServeStaticModule } from '@nestjs/serve-static';
 
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { ProjectsController } from './projects/projects.controller';
 import { PersonalController } from './personal/personal.controller';
 import { PersonalService } from './personal/personal.service';
 import {join} from "path"
@@ -16,7 +15,6 @@ import {join} from "path"
   ],
   controllers: [
     AppController,
-    ProjectsController,
     PersonalController,
   ],
   providers: [AppService, PersonalService],
