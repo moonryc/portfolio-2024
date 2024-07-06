@@ -9,9 +9,21 @@ import {join} from "path"
 
 @Module({
   imports: [
-    ServeStaticModule.forRoot({
-      rootPath: join(__dirname, "assets")
-    })
+    //Serves React static files from the frontend directory
+    ServeStaticModule.forRoot(
+      {
+        rootPath: join(__dirname,"assets", "frontend"),
+        renderPath: "/"
+      },
+    ),
+    ServeStaticModule.forRoot(
+      {
+        rootPath: join(__dirname, "assets"),
+        serveRoot: "/assets",
+        exclude:["frontend"],
+        serveStaticOptions: {index: false}
+      },
+      ),
   ],
   controllers: [
     AppController,
@@ -20,3 +32,6 @@ import {join} from "path"
   providers: [AppService, PersonalService],
 })
 export class AppModule {}
+
+
+console.log(join(__dirname, "assets"))
