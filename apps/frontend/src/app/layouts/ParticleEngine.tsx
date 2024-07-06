@@ -1,6 +1,6 @@
-import { PropsWithChildren, useEffect } from 'react';
+import { PropsWithChildren } from 'react';
 import { useAdvancedToggle } from '../hooks/useAdvancedToggle';
-import { useDebounce, useEffectOnce, usePrevious, useWindowSize } from 'react-use';
+import { useEffectOnce } from 'react-use';
 import Particles, { initParticlesEngine, IParticlesProps } from '@tsparticles/react';
 // import { loadSlim } from '@tsparticles/slim';
 import { useTheme } from '@mui/material';

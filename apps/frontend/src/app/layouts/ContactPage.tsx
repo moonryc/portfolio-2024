@@ -1,10 +1,9 @@
 import { PersonalQuery } from '../hooks/usePersonalQuery';
-import { Box, Stack, Typography, useTheme } from '@mui/material';
+import { Stack } from '@mui/material';
 import { useCallback, useMemo } from 'react';
 import PageLayout from './PageLayout';
-import { contactInfo } from '../../../../backend/src/app/personal/personal.data';
 import Button from '../shared/ui/ListItem/Button';
-import { noop } from 'lodash';
+import { environment } from '../../environments/environment';
 
 type ContactPageProps = {
   contactDTO: PersonalQuery["contactMe"]
@@ -24,13 +23,13 @@ const ContactMeItem = ({iconNameForURL, contactURL, isEmail}:ContactMeItemProps)
       return
     }
     window.open(contactURL, "_blank")
-  },[])
+  },[contactURL, isEmail])
 
   return (
     <Button
       value={iconNameForURL.toUpperCase()}
       onClick={handleOnClick}
-      customIcon={<img src={`http://localhost:3000/${iconNameForURL}.svg`} alt={iconNameForURL}
+      customIcon={<img src={`${environment.publicURL}/assets/${iconNameForURL}.svg`} alt={iconNameForURL}
                        style={{ filter: 'grayscale(100%) sepia(100%) contrast(50%)' }} />}
     />
   )

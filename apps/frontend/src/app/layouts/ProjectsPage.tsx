@@ -7,8 +7,8 @@ import { Box, Stack, Typography, useTheme } from '@mui/material';
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
 import ImageModal from '../shared/ui/ImageModal/ImageModal';
-import GridViewSharpIcon from '@mui/icons-material/GridViewSharp';
 import { Square } from '@mui/icons-material';
+import { environment } from '../../environments/environment';
 
 type ProjectsPageProps = {
   projectsDTO: PersonalQuery["projects"]
@@ -65,7 +65,7 @@ const SelectedProjectView = ({project, onClose}: SelectedProjectProps)=>{
           removeArrowOnDeviceType={["tablet", "mobile"]}
         >
           {project.photos.map((photo)=> {
-            const imgURL = `http://localhost:3000/projects/${photo}`
+            const imgURL = `${environment.publicURL}/assets/projects/${photo}`
             return (
               <Box key={photo} onClick={handleOpenImageModal(imgURL)} display={"flex"} justifyContent={"center"}>
               <img loading={'lazy'} src={imgURL} alt={photo} style={{maxWidth:"25vw", maxHeight: "25vh"}}  />
@@ -79,8 +79,8 @@ const SelectedProjectView = ({project, onClose}: SelectedProjectProps)=>{
         <Typography variant={"h6"} fontWeight={"bold"}>{project.description}</Typography>
         <Typography variant={"h3"}>Technologies</Typography>
          {project.technologies.map((technology)=>(
-           <Box display={"flex"} alignItems={"center"}>
-           <Square color={"primary"} /> <Typography variant={"h6"} fontWeight={"bold"}>{technology}</Typography>
+           <Box key={technology} display={"flex"} alignItems={"center"}>
+            <Square color={"primary"} /> <Typography variant={"h6"} fontWeight={"bold"}>{technology}</Typography>
            </Box>
          ))}
       </Box>
@@ -119,7 +119,7 @@ const ProjectsPage = ({projectsDTO}:ProjectsPageProps) => {
         })}
       </Stack>
     )
-  }, [projectsDTO]);
+  }, [handleProjectSelect, projectsDTO]);
 
   return (
     <PageLayout title={isProjectSelected ? `Projects > ${selectedProject.title}` : "Projects"}>

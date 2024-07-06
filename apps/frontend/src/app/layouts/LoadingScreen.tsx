@@ -1,6 +1,6 @@
 import React from 'react';
 import { TypeAnimation } from 'react-type-animation';
-import { Stack, Typography, useTheme } from '@mui/material';
+import { Box, Stack, Typography, useTheme } from '@mui/material';
 
 
 const LoadingScreen = () => {
@@ -50,11 +50,11 @@ const LoadingScreen = () => {
       backgroundColor: theme.palette.primary.main,
     }} gap={6}>
       <style>{keyframes}</style>
-      <div style={loaderStyle}>
+      <Box sx={loaderStyle}>
         {circles.map((circle, index) => (
-          <div
+          <Box
             key={index}
-            style={{
+            sx={{
               ...circleBaseStyle,
               width: circle.size,
               height: circle.size,
@@ -63,9 +63,9 @@ const LoadingScreen = () => {
               top: circle.top || 0,
               left: circle.left || 0,
             }}
-          ></div>
+          ></Box>
         ))}
-      </div>
+      </Box>
       <Typography variant={"h1"} color={theme.palette.secondary.main}>
       <TypeAnimation
         cursor={false}

@@ -1,8 +1,8 @@
 import { PersonalQuery } from '../hooks/usePersonalQuery';
 import React from 'react';
-import { Box, Grid, Stack, Typography, useTheme } from '@mui/material';
-import PageHeader from './PageHeader';
+import { Grid, Stack, Typography, useTheme } from '@mui/material';
 import PageLayout from './PageLayout';
+import { environment } from '../../environments/environment';
 
 type TechnoligiesPageProps = {
   technologiesDTO: PersonalQuery["technologies"]
@@ -21,7 +21,7 @@ const Technology =({name}:{name:string})=>{
 
   return (
     <Stack>
-        <img style={imageStyle} src={`http://localhost:3000/technologies/${name}`} alt={name}/>
+      <img style={imageStyle} src={`${environment.publicURL}/assets/technologies/${name}`} alt={name}/>
       <Typography variant={"h6"} fontWeight={"bold"} textAlign={"center"} textTransform={"uppercase"} color={theme.palette.primary.main} bgcolor={theme.palette.secondary.light}>{nameWithoutFileExtension}</Typography>
     </Stack>
   )

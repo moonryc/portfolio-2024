@@ -19,9 +19,9 @@ function App() {
     return <LoadingScreen/>;
   }
 
-  if(personalData){
-    return <LoadingScreen/>;
-  }
+  // if(personalData){
+  //   return <LoadingScreen/>;
+  // }
 
   return (
     <Box px={"8px"}>
