@@ -1,4 +1,5 @@
 import { useAsync } from 'react-use';
+import { environment } from '../../environments/environment';
 
 type ContactInfo = {
   email: string;
@@ -29,7 +30,7 @@ export type PersonalQuery = {
 export const usePersonalQuery = ()  => {
 
   const {value, loading} = useAsync<()=>Promise<PersonalQuery>>(async ()=>{
-      const response = await fetch("http://localhost:3000/api/personal", {
+      const response = await fetch(`${environment.publicURL}/api/personal`, {
       })
       return await response.json() as unknown as PersonalQuery
   },[])
