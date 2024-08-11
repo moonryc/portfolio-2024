@@ -26,7 +26,7 @@ const Button = ({value,isSelected = false, onClick, customIcon}:ButtonProps) => 
 
     const iconColor = isHovered || isSelected ? 'primary' : 'secondary';
     return isSelected ? <GridViewSharpIcon color={iconColor} /> : <Square color={iconColor} />;
-  }, [isHovered, isSelected]);
+  }, [customIcon, isHovered, isSelected]);
 
   const divider = useMemo(() => {
     const dividerColor =
@@ -42,7 +42,8 @@ const Button = ({value,isSelected = false, onClick, customIcon}:ButtonProps) => 
       sx={{
         cursor: "pointer",
         background: theme.palette.secondary.light,
-        py: '5px'
+        py: '5px',
+        "box-shadow": "5px 5px 10px black"
       }}>
       {divider}
       <Box display={'flex'} alignItems={'center'} pl={'1rem'}>
