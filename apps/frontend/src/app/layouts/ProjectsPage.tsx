@@ -4,107 +4,67 @@ import Button from '../shared/ui/ListItem/Button';
 import { isNil } from 'lodash';
 import React, { useCallback, useMemo, useState } from 'react';
 import { Box, Stack, Typography, useTheme } from '@mui/material';
-import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
-import ImageModal from '../shared/ui/ImageModal/ImageModal';
 import { Square } from '@mui/icons-material';
 import { environment } from '../../environments/environment';
+import Carousel from '../shared/ui/Carousel/Carousel';
+import ContentBox from '../shared/ui/ContentBox/ContentBox';
 
 type ProjectsPageProps = {
-  projectsDTO: PersonalQuery["projects"]
+  projectsDTO: PersonalQuery['projects']
 }
 
 type SelectedProjectProps = {
-  onClose: ()=>void;
+  onClose: () => void;
   project: Project;
 }
 
-const responsiveCarousel = {
-  superLargeDesktop: {
-    // the naming can be any, depends on you.
-    breakpoint: { max: 4000, min: 3000 },
-    items: 1
-  },
-  desktop: {
-    breakpoint: { max: 3000, min: 1024 },
-    items: 1
-  },
-  tablet: {
-    breakpoint: { max: 1024, min: 464 },
-    items: 1
-  },
-  mobile: {
-    breakpoint: { max: 464, min: 0 },
-    items: 1
-  }
-};
+const SelectedProjectView = ({ project, onClose }: SelectedProjectProps) => {
+  const theme = useTheme();
+  const imgURLs = useMemo(() => project.photos.map((photo) => `${environment.publicURL}/assets/projects/${photo}`), [project]);
 
-const SelectedProjectView = ({project, onClose}: SelectedProjectProps)=>{
-  const theme = useTheme()
-
-  const [imgURLForModal, setImgURLForModal] = useState<string | null>(null);
-  const hasSelectedImgURLForModal = !isNil(imgURLForModal)
-
-
-  const handleCloseImageModal = useCallback(()=>{
-    setImgURLForModal(null)
-  },[])
-
-  const handleOpenImageModal = useCallback((imgURL:string)=>()=>{
-    setImgURLForModal(imgURL)
-  },[])
+  const handleViewMore = useCallback(() => {
+    window.open(project.link, '_blank');
+  }, [project.link]);
 
   return (
     <Stack gap={2}>
-      <Button value={"Back"} onClick={onClose}/>
-      <Box bgcolor={theme.palette.secondary.light} p={2}>
-        <Carousel
-          responsive={responsiveCarousel}
-          centerMode
-          infinite
-          removeArrowOnDeviceType={["tablet", "mobile"]}
-        >
-          {project.photos.map((photo)=> {
-            const imgURL = `${environment.publicURL}/assets/projects/${photo}`
-            return (
-              <Box key={photo} onClick={handleOpenImageModal(imgURL)} display={"flex"} justifyContent={"center"}>
-              <img loading={'lazy'} src={imgURL} alt={photo} style={{maxWidth:"25vw", maxHeight: "25vh"}}  />
-            </Box>
-            );
-          })}
-        </Carousel>
-      </Box>
-      <Box p={2} bgcolor={theme.palette.secondary.light} color={theme.palette.primary.main}>
-        <Typography variant={"h3"}>Description</Typography>
-        <Typography variant={"h6"} fontWeight={"bold"}>{project.description}</Typography>
-        <Typography variant={"h3"}>Technologies</Typography>
-         {project.technologies.map((technology)=>(
-           <Box key={technology} display={"flex"} alignItems={"center"}>
-            <Square color={"primary"} /> <Typography variant={"h6"} fontWeight={"bold"}>{technology}</Typography>
-           </Box>
-         ))}
-      </Box>
-      <ImageModal open={hasSelectedImgURLForModal} onClose={handleCloseImageModal} imgURL={imgURLForModal}/>
+      <Button value={'Back'} onClick={onClose} />
+      <ContentBox>
+        <Carousel imageUrls={imgURLs}/>
+      </ContentBox>
+      <ContentBox>
+        <Typography variant={'h4'} fontWeight={"bolder"} color={theme.palette.primary.main}>Description</Typography>
+        <Typography variant={'h6'} fontWeight={'bold'} color={theme.palette.primary.main}>{project.description}</Typography>
+        <Typography variant={'h4'} fontWeight={"bolder"} color={theme.palette.primary.main}>Technologies</Typography>
+        {project.technologies.map((technology) => (
+          <Box key={technology} display={'flex'} alignItems={'center'}>
+            <Square color={'primary'} /> <Typography variant={'h6'} fontWeight={'bold'} color={theme.palette.primary.main}>{technology}</Typography>
+          </Box>
+        ))}
+      </ContentBox>
+      {project.link && <Button value={'VIEW MORE'} onClick={handleViewMore} />}
+
     </Stack>
   );
-}
+};
 
 
-const ProjectsPage = ({projectsDTO}:ProjectsPageProps) => {
+const ProjectsPage = ({ projectsDTO }: ProjectsPageProps) => {
 
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null)
-  const isProjectSelected = !isNil(selectedProject)
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const isProjectSelected = !isNil(selectedProject);
 
-  const handleProjectSelect = useCallback((project:Project)=>()=>{
-    setSelectedProject(project)
-  },[])
+  const handleProjectSelect = useCallback((project: Project) => () => {
+    setSelectedProject(project);
+  }, []);
 
-  const handleCloseProject = useCallback(()=>{
-    setSelectedProject(null)
-  },[])
+  const handleCloseProject = useCallback(() => {
+    setSelectedProject(null);
+  }, []);
 
   const projects = useMemo(() => {
-    const projectKeys = Object.keys(projectsDTO) as (keyof typeof projectsDTO)[]
+    const projectKeys = Object.keys(projectsDTO) as (keyof typeof projectsDTO)[];
     return (
       <Stack gap={2}>
         {projectKeys.map((key) => {
@@ -118,12 +78,12 @@ const ProjectsPage = ({projectsDTO}:ProjectsPageProps) => {
           );
         })}
       </Stack>
-    )
+    );
   }, [handleProjectSelect, projectsDTO]);
 
   return (
-    <PageLayout title={isProjectSelected ? `Projects > ${selectedProject.title}` : "Projects"}>
-      {isProjectSelected && <SelectedProjectView project={selectedProject} onClose={handleCloseProject}/>}
+    <PageLayout title={isProjectSelected ? `${selectedProject.title}` : 'Projects'}>
+      {isProjectSelected && <SelectedProjectView project={selectedProject} onClose={handleCloseProject} />}
       {!isProjectSelected && projects}
     </PageLayout>
   );
