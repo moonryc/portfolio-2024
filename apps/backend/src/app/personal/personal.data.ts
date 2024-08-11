@@ -42,7 +42,7 @@ const redBinderProject: Project = {
   title: 'RedBinder',
   description: 'An ios/android application that can help someone who needs to manage medications for multiple people in a household.',
   technologies: ["React Native", "Apollo", "Express", "GraphQL","TypeScript", "Expo", "Tailwind", "Lodash", "MongoDB", "Mongoose"],
-  photos: [],
+  photos: ["redBinder_1.png","redBinder_2.png","redBinder_3.png","redBinder_4.png","redBinder_5.png","redBinder_6.png", "redBinder_7.png","redBinder_8.png"],
   link: 'https://github.com/moonryc/red-binder',
 }
 
