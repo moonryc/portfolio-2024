@@ -5,8 +5,8 @@ export const contactInfo = {
 } as const
 
 export const aboutMe = [
-  `I am Ryan Moon, an experienced fullstack React developer with a strong engineering background. I specialize in creating responsive, stable, and enjoyable user experiences. I thrive on tackling new programming challenges and fostering collaborative environments. Known for my creativity, organization, and teamwork, I consistently deliver on my commitments.`,
-  `With expertise in technologies such as JavaScript, TypeScript, React, Node.js, and Docker, I have contributed to projects ranging from AI chatbots to data management software. Currently, I work at Waterly Software, where I enhance frontend software, implement CI/CD tools, and develop custom plugins for clients. I hold a Civil Engineering degree from Lamar University and a Bootcamp Certificate from Rice University.`
+  `Hi there!`, `My name is Ryan Moon!`,`I am an experienced fullstack React developer with a strong engineering background. I specialize in creating responsive, stable, and enjoyable user experiences. I thrive on tackling new programming challenges and fostering collaborative environments. Known for my creativity, organization, and teamwork, I consistently deliver on my commitments.`,
+  `With expertise in technologies such as JavaScript, TypeScript, React, Node.js, and Docker, I have contributed to a wide range of projects ranging from leveraging LLM AI to create chatbots to data management software. Currently, I work at Waterly Software, where I create and continue to enhance data management software, implement CI/CD tools, and develop custom plugins for clients. I hold a Civil Engineering degree from Lamar University and a Bootcamp Certificate from Rice University.`
 ]
 
 
@@ -31,9 +31,9 @@ const waterlyProject:Project = {
 }
 
 const formikDebuggerProject: Project = {
-  title: 'formik-debugger',
+  title: 'FORMIK-DEBUGGER',
   description: 'An NPM package used walongside Formik as a developer tool to aid in debugging large forms',
-  technologies: ["Formik", "React", "Typescript, Storybook"],
+  technologies: ["Formik", "React", "Typescript", "Storybook", "NPM", "React-Draggable"],
   photos: ["formikDebugger_1.png","formikDebugger_2.png","formikDebugger_3.png","formikDebugger_4.png","formikDebugger_5.png"],
   link: 'https://www.npmjs.com/package/formik-debugger',
 }
