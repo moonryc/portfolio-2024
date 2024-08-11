@@ -8,7 +8,7 @@ type PageLayoutProps = {
 
 const PageLayout = ({title, children}:PropsWithChildren<PageLayoutProps> ) => {
   return (
-    <Grid container justifyContent={"center"} spacing={2} width={"80%"}>
+    <Grid container justifyContent={"center"} spacing={2} width={"90%"}>
       <Grid item xs={12}>
         <PageHeader title={title}/>
       </Grid>
