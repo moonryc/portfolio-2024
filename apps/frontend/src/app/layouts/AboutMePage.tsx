@@ -2,6 +2,7 @@ import { Box, Typography, useTheme } from '@mui/material';
 import { PersonalQuery } from '../hooks/usePersonalQuery';
 import PageLayout from './PageLayout';
 import React from 'react';
+import ContentBox from '../shared/ui/ContentBox/ContentBox';
 
 type AboutMePageProps = {
   aboutMeDTO: PersonalQuery["aboutMe"]
@@ -12,13 +13,12 @@ const AboutMePage = ({aboutMeDTO}:AboutMePageProps) => {
 
   return (
     <PageLayout title={"About Me"}>
-      <Box bgcolor={theme.palette.secondary.light} >
+      <ContentBox>
         {aboutMeDTO.map((sentence)=>(
-          <React.Fragment key={sentence}>
-            <Typography p={2} variant={"h6"} fontWeight={"bolder"} color={theme.palette.primary.main}>{sentence}</Typography>
-          </React.Fragment>)
+            <Typography key={sentence} p={2} variant={"h6"} fontWeight={"bolder"} color={theme.palette.primary.main}>{sentence}</Typography>
+          )
         )}
-      </Box>
+      </ContentBox>
     </PageLayout>
   );
 };
