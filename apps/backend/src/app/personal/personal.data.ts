@@ -30,6 +30,14 @@ const waterlyProject:Project = {
   link: "https://waterly.com"
 }
 
+const formikDebuggerProject: Project = {
+  title: 'formik-debugger',
+  description: 'An NPM package used walongside Formik as a developer tool to aid in debugging large forms',
+  technologies: ["Formik", "React", "Typescript, Storybook"],
+  photos: ["formikDebugger_1.png","formikDebugger_2.png","formikDebugger_3.png","formikDebugger_4.png","formikDebugger_5.png"],
+  link: 'https://www.npmjs.com/package/formik-debugger',
+}
+
 const amorAIProject:Project = {
   title: 'AmorAI',
   description: 'Developed a voice-to-text/text chatbot that leverages AI, 3D models, and voice models to authentically simulate human-to-human conversation',
@@ -49,6 +57,7 @@ const redBinderProject: Project = {
 
 
 export const projects: Projects = {
-  redBinder:redBinderProject,
+  formikDebugger: formikDebuggerProject,
   amorAI: amorAIProject,
+  redBinder:redBinderProject,
 }
